@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_marketing_servicio,marketing.servicio,model_marketing_servicio,base.group_user,1,1,1,1
+access_marketing_proyecto,marketing.proyecto,model_marketing_proyecto,base.group_user,1,1,1,1
+access_marketing_tarea,marketing.tarea,model_marketing_tarea,base.group_user,1,1,1,1

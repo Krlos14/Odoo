@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <record id="marketing_digital.action_report_proyecto" model="ir.actions.report">
+      <field name="name">Ficha de Proyecto</field>
+      <field name="model">marketing.proyecto</field>
+      <field name="report_type">qweb-pdf</field>
+      <field name="report_name">marketing_digital.report_proyecto_template</field>
+      <field name="report_file">marketing_digital.report_proyecto_template</field>
+      <field name="binding_model_id" ref="model_marketing_proyecto"/>
+      <field name="binding_type">report</field>
+    </record>
+
+  </data>
+</odoo>

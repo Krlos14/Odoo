@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <!-- Vista lista servicios -->
+    <record model="ir.ui.view" id="marketing_digital.servicio_tree">
+      <field name="name">marketing.servicio.tree</field>
+      <field name="model">marketing.servicio</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="tipo"/>
+          <field name="precio"/>
+          <field name="activo"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Vista formulario servicios -->
+    <record model="ir.ui.view" id="marketing_digital.servicio_form">
+      <field name="name">marketing.servicio.form</field>
+      <field name="model">marketing.servicio</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <group>
+                <field name="name"/>
+                <field name="tipo"/>
+                <field name="precio"/>
+                <field name="activo"/>
+              </group>
+            </group>
+            <group string="Descripción">
+              <field name="descripcion" nolabel="1"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Vista búsqueda servicios -->
+    <record model="ir.ui.view" id="marketing_digital.servicio_search">
+      <field name="name">marketing.servicio.search</field>
+      <field name="model">marketing.servicio</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="tipo"/>
+          <filter string="Activos" name="activos" domain="[('activo','=',True)]"/>
+          <filter string="SEO" name="seo" domain="[('tipo','=','seo')]"/>
+          <filter string="Diseño Web" name="disenio" domain="[('tipo','=','disenio_web')]"/>
+          <group expand="0" string="Agrupar por">
+            <filter string="Tipo" name="group_tipo" context="{'group_by': 'tipo'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <!-- Acción servicios -->
+    <record model="ir.actions.act_window" id="marketing_digital.servicio_action">
+      <field name="name">Servicios</field>
+      <field name="res_model">marketing.servicio</field>
+      <field name="view_mode">tree,form</field>
+      <field name="search_view_id" ref="marketing_digital.servicio_search"/>
+    </record>
+
+  </data>
+</odoo>

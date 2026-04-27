@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <template id="report_proyecto_template">
+      <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="doc">
+          <t t-call="web.external_layout">
+            <div class="page">
+
+              <h2>Ficha de Proyecto</h2>
+
+              <table class="table table-bordered">
+                <tbody>
+                  <tr>
+                    <td><strong>Nombre del Proyecto</strong></td>
+                    <td><t t-esc="doc.name"/></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Cliente</strong></td>
+                    <td><t t-esc="doc.cliente_id.name"/></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Email Cliente</strong></td>
+                    <td><t t-esc="doc.email_cliente"/></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Estado</strong></td>
+                    <td><t t-esc="doc.estado"/></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Fecha de Inicio</strong></td>
+                    <td><t t-esc="doc.fecha_inicio"/></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Fecha de Fin</strong></td>
+                    <td><t t-esc="doc.fecha_fin"/></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Presupuesto</strong></td>
+                    <td><t t-esc="doc.presupuesto"/> €</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Importe Total Servicios</strong></td>
+                    <td><t t-esc="doc.importe_total"/> €</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <h3>Descripción</h3>
+              <p><t t-esc="doc.descripcion"/></p>
+
+              <h3>Servicios Contratados</h3>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Servicio</th>
+                    <th>Tipo</th>
+                    <th>Precio</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <t t-foreach="doc.servicio_ids" t-as="servicio">
+                    <tr>
+                      <td><t t-esc="servicio.name"/></td>
+                      <td><t t-esc="servicio.tipo"/></td>
+                      <td><t t-esc="servicio.precio"/> €</td>
+                    </tr>
+                  </t>
+                </tbody>
+              </table>
+
+            </div>
+          </t>
+        </t>
+      </t>
+    </template>
+
+  </data>
+</odoo>

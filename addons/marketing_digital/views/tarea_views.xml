@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <!-- Vista lista tareas -->
+    <record model="ir.ui.view" id="marketing_digital.tarea_tree">
+      <field name="name">marketing.tarea.tree</field>
+      <field name="model">marketing.tarea</field>
+      <field name="arch" type="xml">
+        <tree decoration-success="estado == 'completada'"
+              decoration-info="estado == 'en_progreso'"
+              decoration-muted="estado == 'pendiente'">
+          <field name="name"/>
+          <field name="proyecto_id"/>
+          <field name="responsable_id"/>
+          <field name="fecha_limite"/>
+          <field name="prioridad" widget="priority"/>
+          <field name="estado"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Vista formulario tareas -->
+    <record model="ir.ui.view" id="marketing_digital.tarea_form">
+      <field name="name">marketing.tarea.form</field>
+      <field name="model">marketing.tarea</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <field name="estado" widget="statusbar"
+              statusbar_visible="pendiente,en_progreso,completada"/>
+          </header>
+          <sheet>
+            <group>
+              <group string="Información General">
+                <field name="name"/>
+                <field name="proyecto_id"/>
+                <field name="responsable_id"/>
+                <field name="prioridad" widget="priority"/>
+              </group>
+              <group string="Fechas y Estado">
+                <field name="fecha_limite"/>
+                <field name="estado"/>
+              </group>
+            </group>
+            <group string="Descripción">
+              <field name="descripcion" nolabel="1"/>
+            </group>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+          </div>
+        </form>
+      </field>
+    </record>
+
+    <!-- Vista búsqueda tareas -->
+    <record model="ir.ui.view" id="marketing_digital.tarea_search">
+      <field name="name">marketing.tarea.search</field>
+      <field name="model">marketing.tarea</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="proyecto_id"/>
+          <field name="responsable_id"/>
+          <filter string="Pendiente" name="pendiente" domain="[('estado','=','pendiente')]"/>
+          <filter string="En Progreso" name="en_progreso" domain="[('estado','=','en_progreso')]"/>
+          <filter string="Completada" name="completada" domain="[('estado','=','completada')]"/>
+          <filter string="Alta Prioridad" name="alta" domain="[('prioridad','=','1')]"/>
+          <group expand="0" string="Agrupar por">
+            <filter string="Proyecto" name="group_proyecto" context="{'group_by': 'proyecto_id'}"/>
+            <filter string="Responsable" name="group_responsable" context="{'group_by': 'responsable_id'}"/>
+            <filter string="Estado" name="group_estado" context="{'group_by': 'estado'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <!-- Acción tareas -->
+    <record model="ir.actions.act_window" id="marketing_digital.tarea_action">
+      <field name="name">Tareas</field>
+      <field name="res_model">marketing.tarea</field>
+      <field name="view_mode">tree,form</field>
+      <field name="search_view_id" ref="marketing_digital.tarea_search"/>
+    </record>
+
+  </data>
+</odoo>

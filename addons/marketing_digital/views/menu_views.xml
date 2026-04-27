@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <!-- Menú principal -->
+    <menuitem name="Marketing Digital"
+              id="marketing_digital.menu_root"
+              sequence="10"/>
+
+    <!-- Menú Proyectos -->
+    <menuitem name="Proyectos"
+              id="marketing_digital.menu_proyectos"
+              parent="marketing_digital.menu_root"
+              action="marketing_digital.proyecto_action"
+              sequence="1"/>
+
+    <!-- Menú Tareas -->
+    <menuitem name="Tareas"
+              id="marketing_digital.menu_tareas"
+              parent="marketing_digital.menu_root"
+              action="marketing_digital.tarea_action"
+              sequence="2"/>
+
+    <!-- Menú Servicios -->
+    <menuitem name="Servicios"
+              id="marketing_digital.menu_servicios"
+              parent="marketing_digital.menu_root"
+              action="marketing_digital.servicio_action"
+              sequence="3"/>
+
+  </data>
+</odoo>

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <record id="servicio_seo_1" model="marketing.servicio">
+      <field name="name">SEO Básico</field>
+      <field name="tipo">seo</field>
+      <field name="precio">299.0</field>
+      <field name="descripcion">Optimización SEO básica para posicionamiento en buscadores.</field>
+      <field name="activo">True</field>
+    </record>
+
+    <record id="servicio_seo_2" model="marketing.servicio">
+      <field name="name">SEO Avanzado</field>
+      <field name="tipo">seo</field>
+      <field name="precio">599.0</field>
+      <field name="descripcion">Optimización SEO avanzada con auditoría completa y link building.</field>
+      <field name="activo">True</field>
+    </record>
+
+    <record id="servicio_web_1" model="marketing.servicio">
+      <field name="name">Diseño Web Corporativo</field>
+      <field name="tipo">disenio_web</field>
+      <field name="precio">1200.0</field>
+      <field name="descripcion">Diseño y desarrollo de página web corporativa responsive.</field>
+      <field name="activo">True</field>
+    </record>
+
+    <record id="servicio_web_2" model="marketing.servicio">
+      <field name="name">Tienda Online</field>
+      <field name="tipo">disenio_web</field>
+      <field name="precio">2500.0</field>
+      <field name="descripcion">Desarrollo completo de tienda online con pasarela de pago.</field>
+      <field name="activo">True</field>
+    </record>
+
+    <record id="servicio_web_3" model="marketing.servicio">
+      <field name="name">Landing Page</field>
+      <field name="tipo">disenio_web</field>
+      <field name="precio">450.0</field>
+      <field name="descripcion">Diseño de landing page optimizada para conversión.</field>
+      <field name="activo">True</field>
+    </record>
+
+    <record id="servicio_rrss_1" model="marketing.servicio">
+      <field name="name">Gestión Redes Sociales Básica</field>
+      <field name="tipo">redes_sociales</field>
+      <field name="precio">450.0</field>
+      <field name="descripcion">Gestión mensual de Instagram y Facebook.</field>
+      <field name="activo">True</field>
+    </record>
+
+    <record id="servicio_rrss_2" model="marketing.servicio">
+      <field name="name">Gestión Redes Sociales Premium</field>
+      <field name="tipo">redes_sociales</field>
+      <field name="precio">850.0</field>
+      <field name="descripcion">Gestión mensual de Instagram, Facebook, LinkedIn y TikTok.</field>
+      <field name="activo">True</field>
+    </record>
+
+    <record id="servicio_email_1" model="marketing.servicio">
+      <field name="name">Email Marketing Básico</field>
+      <field name="tipo">email_marketing</field>
+      <field name="precio">199.0</field>
+      <field name="descripcion">Campañas de email marketing con diseño personalizado.</field>
+      <field name="activo">True</field>
+    </record>
+
+    <record id="servicio_email_2" model="marketing.servicio">
+      <field name="name">Email Marketing Avanzado</field>
+      <field name="tipo">email_marketing</field>
+      <field name="precio">399.0</field>
+      <field name="descripcion">Campañas con automatización, segmentación y análisis.</field>
+      <field name="activo">True</field>
+    </record>
+
+    <record id="servicio_pub_1" model="marketing.servicio">
+      <field name="name">Publicidad Google Ads</field>
+      <field name="tipo">publicidad</field>
+      <field name="precio">350.0</field>
+      <field name="descripcion">Gestión de campañas en Google Ads.</field>
+      <field name="activo">True</field>
+    </record>
+
+    <record id="servicio_pub_2" model="marketing.servicio">
+      <field name="name">Publicidad Meta Ads</field>
+      <field name="tipo">publicidad</field>
+      <field name="precio">300.0</field>
+      <field name="descripcion">Gestión de campañas en Facebook e Instagram Ads.</field>
+      <field name="activo">True</field>
+    </record>
+
+    <record id="proyecto_1" model="marketing.proyecto">
+      <field name="name">Rediseño Web Restaurante El Olivo</field>
+      <field name="cliente_id" ref="base.res_partner_1"/>
+      <field name="fecha_inicio">2025-01-15</field>
+      <field name="fecha_fin">2025-03-15</field>
+      <field name="estado">finalizado</field>
+      <field name="presupuesto">1500.0</field>
+      <field name="descripcion">Rediseño completo de la página web del restaurante.</field>
+      <field name="servicio_ids" eval="[(4, ref('servicio_web_1')), (4, ref('servicio_seo_1'))]"/>
+    </record>
+
+    <record id="proyecto_2" model="marketing.proyecto">
+      <field name="name">Campaña Redes Sociales Clínica Dental</field>
+      <field name="cliente_id" ref="base.res_partner_2"/>
+      <field name="fecha_inicio">2025-03-01</field>
+      <field name="fecha_fin">2025-06-01</field>
+      <field name="estado">en_curso</field>
+      <field name="presupuesto">800.0</field>
+      <field name="descripcion">Gestión de redes sociales y email marketing para clínica dental.</field>
+      <field name="servicio_ids" eval="[(4, ref('servicio_rrss_1')), (4, ref('servicio_email_1'))]"/>
+    </record>
+
+    <record id="proyecto_3" model="marketing.proyecto">
+      <field name="name">SEO y Publicidad Online Tienda Moda</field>
+      <field name="cliente_id" ref="base.res_partner_3"/>
+      <field name="fecha_inicio">2025-04-01</field>
+      <field name="fecha_fin">2025-07-01</field>
+      <field name="estado">borrador</field>
+      <field name="presupuesto">950.0</field>
+      <field name="descripcion">Posicionamiento SEO y publicidad online para tienda de moda.</field>
+      <field name="servicio_ids" eval="[(4, ref('servicio_seo_1')), (4, ref('servicio_pub_1'))]"/>
+    </record>
+
+    <record id="proyecto_4" model="marketing.proyecto">
+      <field name="name">Tienda Online Joyería</field>
+      <field name="cliente_id" ref="base.res_partner_1"/>
+      <field name="fecha_inicio">2025-02-01</field>
+      <field name="fecha_fin">2025-05-01</field>
+      <field name="estado">en_curso</field>
+      <field name="presupuesto">3200.0</field>
+      <field name="descripcion">Desarrollo de tienda online con catálogo de productos y pasarela de pago.</field>
+      <field name="servicio_ids" eval="[(4, ref('servicio_web_2')), (4, ref('servicio_rrss_2')), (4, ref('servicio_pub_2'))]"/>
+    </record>
+
+    <record id="proyecto_5" model="marketing.proyecto">
+      <field name="name">Estrategia Digital Academia de Idiomas</field>
+      <field name="cliente_id" ref="base.res_partner_2"/>
+      <field name="fecha_inicio">2025-01-01</field>
+      <field name="fecha_fin">2025-04-01</field>
+      <field name="estado">finalizado</field>
+      <field name="presupuesto">1800.0</field>
+      <field name="descripcion">Estrategia digital completa incluyendo web, redes y email marketing.</field>
+      <field name="servicio_ids" eval="[(4, ref('servicio_web_3')), (4, ref('servicio_rrss_1')), (4, ref('servicio_email_2'))]"/>
+    </record>
+
+    <record id="proyecto_6" model="marketing.proyecto">
+      <field name="name">Campaña Google Ads Inmobiliaria</field>
+      <field name="cliente_id" ref="base.res_partner_3"/>
+      <field name="fecha_inicio">2025-05-01</field>
+      <field name="fecha_fin">2025-08-01</field>
+      <field name="estado">borrador</field>
+      <field name="presupuesto">1100.0</field>
+      <field name="descripcion">Campaña de publicidad en Google Ads y Meta Ads.</field>
+      <field name="servicio_ids" eval="[(4, ref('servicio_pub_1')), (4, ref('servicio_pub_2')), (4, ref('servicio_seo_2'))]"/>
+    </record>
+
+    <record id="proyecto_7" model="marketing.proyecto">
+      <field name="name">Presencia Digital Clínica Veterinaria</field>
+      <field name="cliente_id" ref="base.res_partner_1"/>
+      <field name="fecha_inicio">2025-03-15</field>
+      <field name="fecha_fin">2025-06-15</field>
+      <field name="estado">en_curso</field>
+      <field name="presupuesto">2100.0</field>
+      <field name="descripcion">Creación de web, redes sociales y publicidad para clínica veterinaria.</field>
+      <field name="servicio_ids" eval="[(4, ref('servicio_web_1')), (4, ref('servicio_rrss_2')), (4, ref('servicio_pub_2'))]"/>
+    </record>
+
+    <!-- Tareas de demo -->
+    <record id="tarea_1" model="marketing.tarea">
+      <field name="name">Análisis de keywords</field>
+      <field name="proyecto_id" ref="proyecto_1"/>
+      <field name="fecha_limite">2025-02-01</field>
+      <field name="estado">completada</field>
+      <field name="prioridad">1</field>
+      <field name="descripcion">Investigación y selección de palabras clave principales para el proyecto.</field>
+    </record>
+
+    <record id="tarea_2" model="marketing.tarea">
+      <field name="name">Diseño de mockups</field>
+      <field name="proyecto_id" ref="proyecto_1"/>
+      <field name="fecha_limite">2025-02-15</field>
+      <field name="estado">completada</field>
+      <field name="prioridad">1</field>
+      <field name="descripcion">Diseño de mockups de la nueva web para aprobación del cliente.</field>
+    </record>
+
+    <record id="tarea_3" model="marketing.tarea">
+      <field name="name">Desarrollo web frontend</field>
+      <field name="proyecto_id" ref="proyecto_1"/>
+      <field name="fecha_limite">2025-03-01</field>
+      <field name="estado">completada</field>
+      <field name="prioridad">1</field>
+      <field name="descripcion">Maquetación y desarrollo del frontend de la nueva web.</field>
+    </record>
+
+    <record id="tarea_4" model="marketing.tarea">
+      <field name="name">Creación de contenido para Instagram</field>
+      <field name="proyecto_id" ref="proyecto_2"/>
+      <field name="fecha_limite">2025-04-01</field>
+      <field name="estado">en_progreso</field>
+      <field name="prioridad">1</field>
+      <field name="descripcion">Diseño y redacción de publicaciones para Instagram.</field>
+    </record>
+
+    <record id="tarea_5" model="marketing.tarea">
+      <field name="name">Configuración campaña email</field>
+      <field name="proyecto_id" ref="proyecto_2"/>
+      <field name="fecha_limite">2025-04-15</field>
+      <field name="estado">pendiente</field>
+      <field name="prioridad">0</field>
+      <field name="descripcion">Configuración de la herramienta de email marketing y primeros envíos.</field>
+    </record>
+
+    <record id="tarea_6" model="marketing.tarea">
+      <field name="name">Auditoría SEO inicial</field>
+      <field name="proyecto_id" ref="proyecto_3"/>
+      <field name="fecha_limite">2025-04-15</field>
+      <field name="estado">pendiente</field>
+      <field name="prioridad">1</field>
+      <field name="descripcion">Análisis completo del estado SEO actual de la web del cliente.</field>
+    </record>
+
+    <record id="tarea_7" model="marketing.tarea">
+      <field name="name">Configuración Google Ads</field>
+      <field name="proyecto_id" ref="proyecto_3"/>
+      <field name="fecha_limite">2025-05-01</field>
+      <field name="estado">pendiente</field>
+      <field name="prioridad">1</field>
+      <field name="descripcion">Creación y configuración de las campañas de publicidad en Google Ads.</field>
+    </record>
+
+    <record id="tarea_8" model="marketing.tarea">
+      <field name="name">Diseño tienda online</field>
+      <field name="proyecto_id" ref="proyecto_4"/>
+      <field name="fecha_limite">2025-03-01</field>
+      <field name="estado">completada</field>
+      <field name="prioridad">1</field>
+      <field name="descripcion">Diseño completo de la tienda online con catálogo de productos.</field>
+    </record>
+
+    <record id="tarea_9" model="marketing.tarea">
+      <field name="name">Integración pasarela de pago</field>
+      <field name="proyecto_id" ref="proyecto_4"/>
+      <field name="fecha_limite">2025-04-01</field>
+      <field name="estado">en_progreso</field>
+      <field name="prioridad">1</field>
+      <field name="descripcion">Integración y pruebas de la pasarela de pago en la tienda online.</field>
+    </record>
+
+    <record id="tarea_10" model="marketing.tarea">
+      <field name="name">Campaña Meta Ads lanzamiento</field>
+      <field name="proyecto_id" ref="proyecto_4"/>
+      <field name="fecha_limite">2025-05-01</field>
+      <field name="estado">pendiente</field>
+      <field name="prioridad">1</field>
+      <field name="descripcion">Diseño y lanzamiento de campaña publicitaria para el lanzamiento de la tienda.</field>
+    </record>
+    
+  </data>
+</odoo>

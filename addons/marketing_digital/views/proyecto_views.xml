@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <!-- Vista lista proyectos -->
+    <record model="ir.ui.view" id="marketing_digital.proyecto_tree">
+      <field name="name">marketing.proyecto.tree</field>
+      <field name="model">marketing.proyecto</field>
+      <field name="arch" type="xml">
+        <tree decoration-success="estado == 'finalizado'"
+              decoration-info="estado == 'en_curso'"
+              decoration-muted="estado == 'cancelado'"
+              decoration-warning="estado == 'borrador'">
+          <field name="name"/>
+          <field name="cliente_id"/>
+          <field name="fecha_inicio"/>
+          <field name="fecha_fin"/>
+          <field name="prioridad"/>
+          <field name="estado"/>
+          <field name="progreso" widget="progressbar"/>
+          <field name="presupuesto"/>
+          <field name="importe_total"/>
+          <field name="num_tareas"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Vista formulario proyectos -->
+    <record model="ir.ui.view" id="marketing_digital.proyecto_form">
+      <field name="name">marketing.proyecto.form</field>
+      <field name="model">marketing.proyecto</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <button name="action_iniciar" string="Iniciar Proyecto"
+              type="object" class="btn-primary"
+              invisible="estado not in ['borrador', 'cancelado']"/>
+            <button name="action_finalizar" string="Finalizar"
+              type="object" class="btn-primary"
+              invisible="estado != 'en_curso'"/>
+            <button name="action_cancelar" string="Cancelar"
+              type="object" class="btn-danger"
+              invisible="estado in ['finalizado', 'cancelado']"/>
+            <button name="action_borrador" string="Restablecer a Borrador"
+              type="object"
+              invisible="estado != 'cancelado'"/>
+            <field name="estado" widget="statusbar"
+              statusbar_visible="borrador,en_curso,finalizado"/>
+          </header>
+          <sheet>
+            <div class="oe_button_box" name="button_box">
+              <button class="oe_stat_button" type="object"
+                name="action_iniciar" icon="fa-tasks">
+                <field name="num_tareas" widget="statinfo" string="Tareas"/>
+              </button>
+              <button class="oe_stat_button" type="object"
+                name="action_finalizar" icon="fa-check-circle">
+                <field name="num_tareas_completadas" widget="statinfo" string="Completadas"/>
+              </button>
+            </div>
+            <group>
+              <group string="Información General">
+                <field name="name"/>
+                <field name="cliente_id"/>
+                <field name="email_cliente"/>
+                <field name="telefono_cliente"/>
+                <field name="prioridad" widget="priority" readonly="0"/>
+              </group>
+              <group string="Fechas y Presupuesto">
+                <field name="fecha_inicio"/>
+                <field name="fecha_fin"/>
+                <field name="estado"/>
+                <field name="progreso" widget="progressbar"/>
+                <field name="presupuesto"/>
+                <field name="importe_total"/>
+              </group>
+            </group>
+            <notebook>
+              <page string="Descripción">
+                <field name="descripcion"/>
+              </page>
+              <page string="Servicios Contratados">
+                <field name="servicio_ids">
+                  <tree>
+                    <field name="name"/>
+                    <field name="tipo"/>
+                    <field name="precio"/>
+                  </tree>
+                </field>
+              </page>
+              <page string="Tareas">
+                <field name="tarea_ids">
+                  <tree editable="bottom"
+                    decoration-success="estado == 'completada'"
+                    decoration-info="estado == 'en_progreso'"
+                    decoration-muted="estado == 'pendiente'">
+                    <field name="name"/>
+                    <field name="responsable_id"/>
+                    <field name="fecha_limite"/>
+                    <field name="prioridad" widget="priority"/>
+                    <field name="estado"/>
+                  </tree>
+                </field>
+              </page>
+            </notebook>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+          </div>
+        </form>
+      </field>
+    </record>
+
+    <!-- Vista kanban proyectos -->
+    <record model="ir.ui.view" id="marketing_digital.proyecto_kanban">
+      <field name="name">marketing.proyecto.kanban</field>
+      <field name="model">marketing.proyecto</field>
+      <field name="arch" type="xml">
+        <kanban default_group_by="estado" class="o_kanban_small_column">
+          <field name="name"/>
+          <field name="cliente_id"/>
+          <field name="estado"/>
+          <field name="fecha_fin"/>
+          <field name="importe_total"/>
+          <field name="progreso"/>
+          <field name="prioridad"/>
+          <field name="color"/>
+          <templates>
+            <t t-name="kanban-box">
+              <div t-attf-class="oe_kanban_global_click o_kanban_record_has_image_fill"
+                style="border-top: 4px solid #7B2D8B;">
+                <div class="oe_kanban_details" style="padding: 10px;">
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <strong style="color:#7B2D8B; font-size:14px;">
+                      <field name="name"/>
+                    </strong>
+                    <t t-if="record.prioridad.raw_value == '1'">
+                      <span style="background-color:#7B2D8B; color:white; padding:2px 8px; border-radius:10px; font-size:11px; font-weight:bold;">
+                        URGENTE
+                      </span>
+                    </t>
+                  </div>
+                  <div style="color:#888; margin-top:4px;">
+                    <i class="fa fa-user" style="color:#7B2D8B;"/> <field name="cliente_id"/>
+                  </div>
+                  <div style="margin-top:4px;">
+                    <i class="fa fa-calendar" style="color:#7B2D8B;"/> Entrega: <field name="fecha_fin"/>
+                  </div>
+                  <div style="margin-top:4px;">
+                    <i class="fa fa-eur" style="color:#7B2D8B;"/> Total: <field name="importe_total"/> €
+                  </div>
+                  <div style="margin-top:8px;">
+                    <field name="progreso" widget="progressbar"/>
+                  </div>
+                </div>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+    <!-- Vista búsqueda proyectos -->
+    <record model="ir.ui.view" id="marketing_digital.proyecto_search">
+      <field name="name">marketing.proyecto.search</field>
+      <field name="model">marketing.proyecto</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="cliente_id"/>
+          <filter string="Borrador" name="borrador" domain="[('estado','=','borrador')]"/>
+          <filter string="En Curso" name="en_curso" domain="[('estado','=','en_curso')]"/>
+          <filter string="Finalizado" name="finalizado" domain="[('estado','=','finalizado')]"/>
+          <filter string="Cancelado" name="cancelado" domain="[('estado','=','cancelado')]"/>
+          <filter string="Urgente" name="urgente" domain="[('prioridad','=','2')]"/>
+          <group expand="0" string="Agrupar por">
+            <filter string="Cliente" name="group_cliente" context="{'group_by': 'cliente_id'}"/>
+            <filter string="Estado" name="group_estado" context="{'group_by': 'estado'}"/>
+            <filter string="Prioridad" name="group_prioridad" context="{'group_by': 'prioridad'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <!-- Acción proyectos -->
+    <record model="ir.actions.act_window" id="marketing_digital.proyecto_action">
+      <field name="name">Proyectos</field>
+      <field name="res_model">marketing.proyecto</field>
+      <field name="view_mode">kanban,tree,form</field>
+      <field name="search_view_id" ref="marketing_digital.proyecto_search"/>
+    </record>
+
+  </data>
+</odoo>
