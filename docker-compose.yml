@@ -5,14 +5,11 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=odoo
       - POSTGRES_PASSWORD=odoo
-    ports:
-      - "5432:5432"
     volumes:
-      - ./postgresql.conf:/var/lib/postgresql/data/postgresql.conf
-      - ./pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
       - odoo-db-data:/var/lib/postgresql/data
     networks:
       - odoo-net
+
 
   odoo:
     image: odoo:17

@@ -6,7 +6,7 @@
 Módulo para la gestión integral de una agencia de marketing digital y diseño web.
 Permite gestionar clientes, proyectos, tareas y servicios.
     """,
-    'author': "Rocío",
+    'author': "Carlos",
     'website': "https://www.yourcompany.com",
     'category': 'Services',
     'version': '0.1',
