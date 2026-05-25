@@ -183,14 +183,35 @@
         </search>
       </field>
     </record>
+    <record model="ir.ui.view" id="marketing_digital.proyecto_graph">
+  <field name="name">marketing.proyecto.graph</field>
+  <field name="model">marketing.proyecto</field>
+  <field name="arch" type="xml">
+    <graph string="Presupuesto por estado" type="bar">
+      <field name="estado"/>
+      <field name="presupuesto" type="measure"/>
+    </graph>
+  </field>
+</record>
+<record model="ir.ui.view" id="marketing_digital.proyecto_calendar">
+  <field name="name">marketing.proyecto.calendar</field>
+  <field name="model">marketing.proyecto</field>
+  <field name="arch" type="xml">
+    <calendar string="Calendario de proyectos" date_start="fecha_inicio" date_stop="fecha_fin">
+      <field name="name"/>
+      <field name="cliente_id"/>
+    </calendar>
+  </field>
+</record>
 
     <!-- Acción proyectos -->
     <record model="ir.actions.act_window" id="marketing_digital.proyecto_action">
       <field name="name">Proyectos</field>
       <field name="res_model">marketing.proyecto</field>
-      <field name="view_mode">kanban,tree,form</field>
+      <field name="view_mode">kanban,tree,form,graph</field>
       <field name="search_view_id" ref="marketing_digital.proyecto_search"/>
     </record>
+
 
   </data>
 </odoo>

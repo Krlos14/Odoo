@@ -77,12 +77,33 @@
         </search>
       </field>
     </record>
+    <record model="ir.ui.view" id="marketing_digital.tarea_kanban">
+  <field name="name">marketing.tarea.kanban</field>
+  <field name="model">marketing.tarea</field>
+  <field name="arch" type="xml">
+    <kanban default_group_by="estado">
+      <field name="name"/>
+      <field name="proyecto_id"/>
+      <field name="responsable_id"/>
+      <field name="estado"/>
+      <templates>
+        <t t-name="kanban-box">
+          <div class="oe_kanban_global_click">
+            <strong><field name="name"/></strong>
+            <div>Proyecto: <field name="proyecto_id"/></div>
+            <div>Responsable: <field name="responsable_id"/></div>
+          </div>
+        </t>
+      </templates>
+    </kanban>
+  </field>
+</record>
 
     <!-- Acción tareas -->
     <record model="ir.actions.act_window" id="marketing_digital.tarea_action">
       <field name="name">Tareas</field>
       <field name="res_model">marketing.tarea</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">kanban,tree,form</field>
       <field name="search_view_id" ref="marketing_digital.tarea_search"/>
     </record>
 

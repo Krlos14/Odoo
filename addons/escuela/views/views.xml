@@ -2,7 +2,6 @@
 <odoo>
   <data>
 
-    <!-- Vista lista -->
     <record model="ir.ui.view" id="escuela.profesor_list">
       <field name="name">escuela profesor list</field>
       <field name="model">escuela.profesor</field>
@@ -13,7 +12,6 @@
       </field>
     </record>
 
-    <!-- Vista formulario -->
     <record model="ir.ui.view" id="escuela.profesor_form">
       <field name="name">escuela profesor form</field>
       <field name="model">escuela.profesor</field>
@@ -28,14 +26,42 @@
       </field>
     </record>
 
-    <!-- Acción -->
+    <record model="ir.ui.view" id="escuela.profesor_search">
+      <field name="name">escuela profesor search</field>
+      <field name="model">escuela.profesor</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+        </search>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="escuela.profesor_kanban">
+      <field name="name">escuela profesor kanban</field>
+      <field name="model">escuela.profesor</field>
+      <field name="arch" type="xml">
+        <kanban>
+          <field name="name"/>
+          <templates>
+            <t t-name="kanban-box">
+              <div class="oe_kanban_global_click">
+                <strong>
+                  <field name="name"/>
+                </strong>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
     <record model="ir.actions.act_window" id="escuela.profesor_action_window">
       <field name="name">Profesores</field>
       <field name="res_model">escuela.profesor</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">tree,form,kanban</field>
+      <field name="search_view_id" ref="escuela.profesor_search"/>
     </record>
 
-    <!-- Menú -->
     <menuitem name="Escuela" id="escuela.menu_root"/>
     <menuitem name="Profesores" id="escuela.profesor_menu"
               parent="escuela.menu_root"
